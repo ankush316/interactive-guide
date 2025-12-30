@@ -197,8 +197,8 @@
 
     // Cleanup previous state
     document
-      .querySelectorAll(".__guide-dotted")
-      .forEach(e => e.classList.remove("__guide-dotted"));
+      .querySelectorAll(".__guide-focus")
+      .forEach(e => e.classList.remove("__guide-focus"));
 
     if (currentTooltip) {
       currentTooltip.remove();
@@ -206,7 +206,8 @@
     }
 
     el.scrollIntoView({ behavior: "smooth", block: "center" });
-    el.classList.add("__guide-dotted");
+    el.classList.add("__guide-focus");
+
     lockInteractions(el); // 🔥 THIS IS THE KEY
     if (!label) return;
 
@@ -273,8 +274,8 @@
       unlockInteractions(); // 🔓 unlock page
 
     document
-      .querySelectorAll(".__guide-dotted")
-      .forEach(e => e.classList.remove("__guide-dotted"));
+      .querySelectorAll(".__guide-focus")
+      .forEach(e => e.classList.remove("__guide-focus"));
 
     if (currentTooltip) {
       currentTooltip.remove();

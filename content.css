@@ -65,6 +65,33 @@
     text-align: center;
   }
 
+  .__guide-focus {
+    position: relative;
+    z-index: 9999;
+  }
+  
+  .__guide-focus::after {
+    content: "";
+    position: absolute;
+    inset: -6px;
+    border-radius: 6px;
+    border: 2px solid #4f46e5;
+    animation: guide-pulse 1.6s infinite;
+    pointer-events: none;
+  }
+  
+  @keyframes guide-pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgba(79,70,229,0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 10px rgba(79,70,229,0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(79,70,229,0);
+    }
+  }
+
   #cancelBtn {
     border: none;
     background: transparent;

@@ -1,0 +1,67 @@
+{
+    "title": "Download Aadhaar | Download Aadhar",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to download Aadhaar",
+            "selectors": [
+                
+                [
+                    "div[role='button'][aria-label='Download Aadhaar']"
+                  ]
+            ]
+            
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Choose an option to proceed",
+            "selectors": [   
+               [
+                    ".auth-form__radio-group"
+                ]    
+            ]
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your Aadhaar number",
+            "selectors": [
+               [
+                    ".auth-form__text-field input"
+                ]
+                    
+            ] 
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the Captcha",
+            "selectors": [  
+              [
+                    ".pvc-form__captcha-field-container input"
+                ]       
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to send OTP",
+            "selectors": [
+                [
+                   ".auth-form__button-container"
+                ]
+                    
+            ]
+            
+        }
+        
+    ]
+}

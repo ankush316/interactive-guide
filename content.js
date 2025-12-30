@@ -134,7 +134,7 @@
     <div id="my-chatbot-messages"></div>
     <div id="my-chatbot-input">
       <input type="text" placeholder="Type a message..." />
-      <button>Send</button>
+      <button id="send-button">Send</button>
     </div>
   `;
 
@@ -150,7 +150,7 @@
   
   const messagesDiv = chatbot.querySelector("#my-chatbot-messages");
   const input = chatbot.querySelector("input");
-  const button = chatbot.querySelector("button");
+  const button = chatbot.querySelector("#send-button");
   const toggle = chatbot.querySelector("#toggle");
 
   messagesDiv.style.flex = "1";
@@ -192,6 +192,27 @@
 
   let currentTooltip = null;
 
+  let overlay;
+
+  function showSpotlight(el) {
+    if (overlay) overlay.remove();
+
+    overlay = document.createElement("div");
+    overlay.className = "__guide-overlay";
+
+    const hole = document.createElement("div");
+    hole.className = "__guide-hole";
+
+    const r = el.getBoundingClientRect();
+    hole.style.top = `${r.top - 6}px`;
+    hole.style.left = `${r.left - 6}px`;
+    hole.style.width = `${r.width + 12}px`;
+    hole.style.height = `${r.height + 12}px`;
+
+    overlay.appendChild(hole);
+    document.body.appendChild(overlay);
+  }
+
   function highlight(el, label = "") {
     if (!el || !el.isConnected) return;
 
@@ -204,8 +225,10 @@
       currentTooltip.remove();
       currentTooltip = null;
     }
-
     el.scrollIntoView({ behavior: "smooth", block: "center" });
+    
+    showSpotlight(el);
+
     el.classList.add("__guide-focus");
 
     lockInteractions(el); // 🔥 THIS IS THE KEY
@@ -214,7 +237,14 @@
     const rect = el.getBoundingClientRect();
     const tooltip = document.createElement("div");
     tooltip.className = "__guide-tooltip";
-    tooltip.textContent = label;
+    
+    tooltip.innerHTML = `
+      <div class="__guide-tooltip-text">${label}</div>
+      <div class="__guide-tooltip-actions">
+        <button class="__guide-prev">◀ Prev</button>
+        <button class="__guide-next">Next ▶</button>
+      </div>
+    `;
 
     document.body.appendChild(tooltip);
 
@@ -258,11 +288,21 @@
     }
 
     tooltip.appendChild(arrow);
+    tooltip.querySelector(".__guide-next")?.addEventListener("click", e => {
+      e.stopPropagation();
+      nextStep();
+    });
+    
+    tooltip.querySelector(".__guide-prev")?.addEventListener("click", e => {
+      e.stopPropagation();
+      prevStep();
+    });
     currentTooltip = tooltip;
   }
   window.addEventListener("beforeunload", () => {
     cancelGuide("page_unload");
   });
+  
   function advance() {
     if (!steps.length) return; // cancelled already
 
@@ -270,18 +310,38 @@
     currentStepIndex++;
     runNextStep();
   }
+
   function clearHighlight() {
-      unlockInteractions(); // 🔓 unlock page
-
+    // 1. Remove element highlights
     document
-      .querySelectorAll(".__guide-focus")
-      .forEach(e => e.classList.remove("__guide-focus"));
-
+      .querySelectorAll(".__guide-dotted, .__guide-focus, .__guide-animate")
+      .forEach(el => {
+        el.classList.remove("__guide-dotted", "__guide-focus", "__guide-animate");
+        el.style.position = "";
+        el.style.zIndex = "";
+      });
+  
+    // 2. Remove tooltip
     if (currentTooltip) {
       currentTooltip.remove();
       currentTooltip = null;
     }
+  
+    // 3. Remove spotlight overlay
+    const overlay = document.querySelector(".__guide-overlay");
+    if (overlay) overlay.remove();
+  
+    // 4. Remove interaction locks
+    if (typeof unlockInteractions === "function") {
+      unlockInteractions();
+    }
+  
+    // 5. Safety: remove any leftover guide artifacts
+    document
+      .querySelectorAll(".__guide-hole")
+      .forEach(el => el.remove());
   }
+  
   let steps = [];
   let currentStepIndex = 0;
   let activeListenerCleanup = null; // Add this line
@@ -438,9 +498,25 @@
     runNextStep();
   };
 
+  function nextStep() {
+    if (currentStepIndex < steps.length - 1) {
+      currentStepIndex++;
+      runNextStep();
+    }
+  }
+  
+  function prevStep() {
+    if (currentStepIndex > 0) {
+      currentStepIndex--;
+      runNextStep();
+    }
+  }
+
+
+  const downloadAadhar = await loadTask("tasks/pipecat/download-aadhar.json")  
+
   const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
   const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
-  
 
   window.helpUserFromSteps = function (stepsArray) {
     steps = stepsArray || [];
@@ -477,6 +553,12 @@
     ) {
       selectedJson = addOrg;
     }
+    if (
+      downloadAadhar?.title &&
+      downloadAadhar.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = downloadAadhar;
+    }
     input.value = "";
 
     // You control JSON from frontend
@@ -485,7 +567,6 @@
       window.helpUserFromJSON(selectedJson);
     }
   }
-
   button.addEventListener("click", sendMessage);
   input.addEventListener("keydown", e => {
     if (e.key === "Enter") sendMessage();

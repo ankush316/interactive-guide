@@ -35,6 +35,7 @@
   
   #my-chatbot-input input {
     flex: 1;
+    display: block !important;
     border: none;
     padding: 10px;
     outline: none;
@@ -78,6 +79,33 @@
     border: 2px solid #4f46e5;
     animation: guide-pulse 1.6s infinite;
     pointer-events: none;
+  }
+
+  .__guide-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35); /* ↓ less dark */
+    z-index: 9998;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+  
+  .__guide-hole {
+    position: absolute;
+    background: transparent;
+    border-radius: 10px;
+  
+    /* softer shadow with feathered edge */
+    box-shadow:
+      0 0 0 9999px rgba(0,0,0,0.35),
+      0 0 0 2px rgba(255,255,255,0.05);
+  
+    transition:
+      top 0.3s ease,
+      left 0.3s ease,
+      width 0.3s ease,
+      height 0.3s ease,
+      border-radius 0.3s ease;
   }
   
   @keyframes guide-pulse {
@@ -132,22 +160,36 @@
   }
   
   .__guide-tooltip {
-    position: fixed;
-    max-width: 260px;
     background: #4f46e5;
-    color: #fff;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 8px;
     font-size: 13px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    z-index: 2147483647;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    line-height: 1.4;
-    pointer-events: none;
+    max-width: 260px;
+    position: absolute;
+    z-index: 9999;
   }
   
-  .__guide-tooltip::after {
-    content: "";
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+  .__guide-tooltip-text {
+    margin-bottom: 8px;
+  }
+  
+  .__guide-tooltip-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+  
+  .__guide-tooltip-actions button {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .__guide-tooltip-actions button:hover {
+    background: rgba(255,255,255,0.25);
   }

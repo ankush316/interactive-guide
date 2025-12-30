@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Interactive Guide Helper",
+  "description": "Guides users step by step using recorded actions",
+  "version": "1.0.0",
+
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+
+  "host_permissions": [
+    "<all_urls>"
+  ],
+
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "web_accessible_resources": [
+    {
+      "resources": ["tasks/pipecat/*.json"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+
+  "action": {
+    "default_title": "Guide Helper"
+  }
+}

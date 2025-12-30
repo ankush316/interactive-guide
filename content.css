@@ -1,0 +1,126 @@
+#my-chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    height: 420px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+  }
+  
+  #my-chatbot-header {
+    background: #111;
+    color: white;
+    padding: 10px;
+    border-radius: 12px 12px 0 0;
+    font-weight: bold;
+  }
+  
+  #my-chatbot-messages {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+    font-size: 13px;
+  }
+  
+  #my-chatbot-input {
+    display: flex;
+    border-top: 1px solid #eee;
+  }
+  
+  #my-chatbot-input input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+  }
+  
+  #my-chatbot-input button {
+    border: none;
+    background: #111;
+    color: white;
+    padding: 0 15px;
+    cursor: pointer;
+  }
+
+  #my-chatbot.minimized {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  #my-chatbot.minimized #my-chatbot-messages,
+  #my-chatbot.minimized #my-chatbot-input {
+    display: none;
+  }
+  
+  #my-chatbot-header {
+    cursor: pointer;
+    text-align: center;
+  }
+
+  #cancelBtn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 16px;
+    margin-right: 6px;
+    color: #ef4444;
+  }
+  
+  /* Chatbot container styling */
+  #my-chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 999999;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+  }
+ 
+  .__guide-dotted {
+    outline: 2px dotted #4f46e5 !important;
+    outline-offset: 2px;
+
+    background-color: aquamarine;
+  }
+
+  body.__guide-locked * {
+    cursor: not-allowed;
+  }
+  
+  .__guide-dotted {
+    cursor: pointer !important;
+  }
+  
+  .__guide-tooltip {
+    position: fixed;
+    max-width: 260px;
+    background: #4f46e5;
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    z-index: 2147483647;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    line-height: 1.4;
+    pointer-events: none;
+  }
+  
+  .__guide-tooltip::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }

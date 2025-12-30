@@ -1,0 +1,40 @@
+{
+    "title": "Add Contact|Add Person|Add User",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to go to contacts page",
+            "selectors": [
+                
+                [
+                    "nav li:nth-of-type(3) > a"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to add a new contact",
+            "selectors": [
+                
+                [
+                    "[data-test='add-entity']"
+                ]
+            ]
+        },
+        {
+            "type": "click",
+            "label": "Fill this form to complete the task",
+            "selectors": [
+                [
+                    "[data-test='left-panel']"
+                ]
+            ],
+            "target": "main"
+        }
+    ]
+}

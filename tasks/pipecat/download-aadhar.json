@@ -8,12 +8,10 @@
             "target": "main",
             "label": "Click here to download Aadhaar",
             "selectors": [
-                
                 [
                     "div[role='button'][aria-label='Download Aadhaar']"
                   ]
-            ]
-            
+            ]  
         },
         
         {
@@ -34,8 +32,7 @@
             "selectors": [
                [
                     ".auth-form__text-field input"
-                ]
-                    
+                ]       
             ] 
         },
         
@@ -47,8 +44,7 @@
               [
                     ".pvc-form__captcha-field-container input"
                 ]       
-            ]
-            
+           ]       
         },
         {
             "type": "click",
@@ -57,11 +53,38 @@
             "selectors": [
                 [
                    ".auth-form__button-container"
-                ]
-                    
+                ]               
+            ]    
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Confirm download option",
+            "selectors": [
+                [
+                    ".auth-form__checkbox"
+                ]               
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the OTP received on your registered mobile number",
+            "selectors": [
+                [
+                    "div.MX_20 input"
+                ]       
             ]
-            
-        }
-        
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to verify OTP",
+            "selectors": [
+                [
+                    "div.unauth-eaadhaar-download > div > div > div:nth-of-type(1) div:nth-of-type(6)"
+                ]     
+            ]
+        } 
     ]
 }

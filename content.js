@@ -521,6 +521,7 @@
 
 
   const downloadAadhar = await loadTask("tasks/pipecat/download-aadhar.json")  
+  const retrieveAadharNumber = await loadTask("tasks/pipecat/retrieve-aadhar-number.json");
 
   const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
   const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
@@ -565,6 +566,12 @@
       downloadAadhar.title.toLowerCase().includes(value.toLowerCase())
     ) {
       selectedJson = downloadAadhar;
+    }
+    if (
+      retrieveAadharNumber?.title &&
+      retrieveAadharNumber.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = retrieveAadharNumber;
     }
     input.value = "";
 

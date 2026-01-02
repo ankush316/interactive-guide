@@ -1,0 +1,108 @@
+{
+    "title": "Retrieve Aadhaar number | Retrieve Aadhar number",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to retrieve Aadhaar number",
+            "selectors": [
+                
+                [
+                     "div.unauthenticated-page > section > div:nth-of-type(1) > div:nth-of-type(2) > div"
+                  ]
+            ]
+            
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Select Aadhar number",
+            "selectors": [   
+               [
+                     ".retrieve-eid-uid-form__radio-group"
+                ]    
+            ]
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your name as per Aadhaar",
+            "selectors": [
+               [
+                     "div.retrieve-eid-uid-form__form-container > div.sc-fXSgeo input"
+                ]
+                    
+            ] 
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter date of birth as per Aadhaar",
+            "selectors": [  
+              [
+                    "#calender"
+                ]       
+            ]
+            
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter mobile number/ email registered with Aadhaar",
+            "selectors": [
+                [
+                   "div.retrieve-eid-uid-form__option-container > div:nth-of-type(1) input"
+                ]
+                    
+            ]
+            
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter captcha",
+            "selectors": [
+                [
+                     "div.retrieve-eid-uid-form__captcha-field-container input"
+                ]
+                    
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "CLick on sent otp button",
+            "selectors": [
+                [
+                     "#root button"
+                ]
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter otp received on your registered mobile number / email",
+            "selectors": [
+                [
+                    "div:nth-of-type(6) input"
+                ]                   
+            ]     
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to verify OTP",
+            "selectors": [
+                [
+                     "div.retrieve-eid-uid-form div:nth-of-type(7)"
+                ]                  
+            ]         
+        }      
+    ]
+}

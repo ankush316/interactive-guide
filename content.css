@@ -81,115 +81,75 @@
     pointer-events: none;
   }
 
-  .__guide-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.35); /* ↓ less dark */
-    z-index: 9998;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-  }
-  
-  .__guide-hole {
-    position: absolute;
-    background: transparent;
-    border-radius: 10px;
-  
-    /* softer shadow with feathered edge */
-    box-shadow:
-      0 0 0 9999px rgba(0,0,0,0.35),
-      0 0 0 2px rgba(255,255,255,0.05);
-  
-    transition:
-      top 0.3s ease,
-      left 0.3s ease,
-      width 0.3s ease,
-      height 0.3s ease,
-      border-radius 0.3s ease;
-  }
-  
-  @keyframes guide-pulse {
-    0% {
-      box-shadow: 0 0 0 0 rgba(79,70,229,0.5);
-    }
-    70% {
-      box-shadow: 0 0 0 10px rgba(79,70,229,0);
-    }
-    100% {
-      box-shadow: 0 0 0 0 rgba(79,70,229,0);
-    }
-  }
+/* ===== Overlay ===== */
+.__guide-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.36);
+  z-index: 9998;
+  pointer-events: auto;
+}
 
-  #cancelBtn {
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 16px;
-    margin-right: 6px;
-    color: #ef4444;
-  }
-  
-  /* Chatbot container styling */
-  #my-chatbot {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background: #fff;
-    border: 1px solid #ccc;
-    z-index: 999999;
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
-  }
- 
-  .__guide-dotted {
-    outline: 2px dotted #4f46e5 !important;
-    outline-offset: 2px;
+/* Transparent hole */
+.__guide-hole {
+  position: absolute;
+  background: transparent;
+  box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.6);
+  border-radius: 8px;
+  pointer-events: none;
+}
 
-    background-color: aquamarine;
-  }
+/* ===== Focused Element ===== */
+.__guide-focus {
+  position: relative;
+  z-index: 9999 !important;
+  box-shadow: 0 0 0 3px #4f46e5;
+  border-radius: 6px;
+  background-clip: padding-box;
+}
 
-  body.__guide-locked * {
-    cursor: not-allowed;
-  }
-  
-  .__guide-dotted {
-    cursor: pointer !important;
-  }
-  
-  .__guide-tooltip {
-    background: #4f46e5;
-    color: white;
-    padding: 10px 12px;
-    border-radius: 8px;
-    font-size: 13px;
-    max-width: 260px;
-    position: absolute;
-    z-index: 9999;
-  }
-  
-  .__guide-tooltip-text {
-    margin-bottom: 8px;
-  }
-  
-  .__guide-tooltip-actions {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-  }
-  
-  .__guide-tooltip-actions button {
-    background: rgba(255,255,255,0.15);
-    border: none;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 12px;
-  }
-  
-  .__guide-tooltip-actions button:hover {
-    background: rgba(255,255,255,0.25);
-  }
+/* ===== Tooltip ===== */
+.__guide-tooltip {
+  position: fixed;
+  z-index: 10000;
+  max-width: 280px;
+  background: #4f46e5;
+  color: #fff;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-size: 14px;
+  line-height: 1.4;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+/* Tooltip text */
+.__guide-tooltip-text {
+  margin-bottom: 10px;
+}
+
+/* Buttons */
+.__guide-tooltip-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.__guide-tooltip button {
+  background: #fff;
+  color: #4f46e5;
+  border: none;
+  padding: 6px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.__guide-tooltip button:hover {
+  background: #e0e7ff;
+}
+
+/* ===== Arrow ===== */
+.__guide-tooltip > div:last-child {
+  width: 0;
+  height: 0;
+}

@@ -191,8 +191,13 @@
   }
 
   let currentTooltip = null;
+  let currentEl = null;
 
   let overlay;
+
+  window.addEventListener("scroll", () => {
+    if (currentEl) showSpotlight(currentEl);
+  });
 
   function showSpotlight(el) {
     if (overlay) overlay.remove();
@@ -217,6 +222,7 @@
     if (!el || !el.isConnected) return;
 
     // Cleanup previous state
+    currentEl = el;
     document
       .querySelectorAll(".__guide-focus")
       .forEach(e => e.classList.remove("__guide-focus"));
@@ -225,7 +231,7 @@
       currentTooltip.remove();
       currentTooltip = null;
     }
-    el.scrollIntoView({ behavior: "smooth", block: "center" });
+    //el.scrollIntoView({ behavior: "smooth", block: "center" });
     
     showSpotlight(el);
 
@@ -250,14 +256,14 @@
 
     const tRect = tooltip.getBoundingClientRect();
     const margin = 8;
-
+    const offset = 12; 
     // Try ABOVE first
-    let top = rect.top - tRect.height - margin;
+    let top = rect.top - tRect.height - margin - offset;
     let place = "top";
 
     // If not enough space, place BELOW
     if (top < margin) {
-      top = rect.bottom + margin;
+      top = rect.bottom + margin + offset;
       place = "bottom";
     }
 
@@ -313,6 +319,7 @@
 
   function clearHighlight() {
     // 1. Remove element highlights
+    currentEl = null;
     document
       .querySelectorAll(".__guide-dotted, .__guide-focus, .__guide-animate")
       .forEach(el => {

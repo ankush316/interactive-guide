@@ -1,0 +1,81 @@
+{
+    "title": "Generate VID | Generate Virtual ID | How to generate VID | Generate VID | Retrieve VID | How to retrieve VID | Retrieve Virtual ID",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to generate | retrieve VID",
+            "selectors": [
+                [
+                    "div:nth-of-type(1) > div:nth-of-type(6) > div"
+                ]
+            ]  
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Choose an option to proceed",
+            "selectors": [   
+               [
+                     "div.auth-form__radio-group"
+                ]    
+            ]
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your Aadhaar number",
+            "selectors": [
+                [
+                      "div.auth-form__text-field input"
+                ]       
+            ] 
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the Captcha",
+            "selectors": [  
+                [
+                    "div.auth-form__captcha-field-container input"
+                ]       
+           ]       
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to send OTP",
+            "selectors": [
+                [
+                   "#root button"
+                ]               
+            ]    
+        },
+       
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the OTP received on your registered mobile number",
+            "selectors": [
+                [
+                    "div.MX_20 input"
+                ]       
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to verify OTP",
+            "selectors": [
+                [
+                    "div:nth-of-type(5) button"
+                ]     
+            ]
+        } 
+    ]
+}

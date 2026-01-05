@@ -1,0 +1,18 @@
+{
+    "title": "How to change language | change language | change language to hindi | change language to english | change language to urdu | change language to marathi | change language to telugu | change language to tamil | change language to bengali | change language to gujarati",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to change language",
+            "selectors": [
+                [
+                    ".login-section__language_selector_mobile"
+                  ]
+            ]  
+        }
+       
+    ]
+}

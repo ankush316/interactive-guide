@@ -1,0 +1,79 @@
+{
+    "title": "Login | Login to Aadhaar Portal | Aadhaar Login | How to Login | How to Login here",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on login button to proceed",
+            "selectors": [   
+               [
+                    ".login-section__card"
+                ]    
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Fill this form to login",
+            "selectors": [   
+               [
+                    ".form-section"
+                ]    
+            ]
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your Aadhaar number",
+            "selectors": [  
+                [
+                     "div.form-section__text-field input"
+                ]       
+           ]       
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+                [
+                    "div.form-section__captcha-field-container input"
+                ]               
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to Login With OTP",
+            "selectors": [
+                [
+                    "#root button"
+                ]       
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the OTP received on your registered mobile number",
+            "selectors": [
+                [
+                     "#root div:nth-of-type(3) input"
+                ]       
+            ]
+        },
+       
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to login",
+            "selectors": [
+                [
+                    "#root button"
+                ]     
+            ]
+        } 
+    ]
+}

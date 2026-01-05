@@ -1,0 +1,207 @@
+{
+    "title": "Report Death of a Family Member",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to report death of a family member",
+            "selectors": [
+                [
+                    "div:nth-of-type(1) > div:nth-of-type(4) div.service-card__info-text"
+                ]
+            ]  
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Login first if you not logged in , First Enter your Aadhaar number",
+            "selectors": [   
+               [
+                     "div.form-section__text-field input"
+                ]    
+            ]
+        },
+        
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your Aadhaar number",
+            "selectors": [  
+                [
+                    "div.pvc-form__form-container > div:nth-of-type(1) input"
+                ]       
+           ]       
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+                [
+                    "div.pvc-form__captcha-field-container input"
+                ]               
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to Login With OTP",
+            "selectors": [
+                [
+                    "#root button"
+                ]       
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the OTP received on your registered mobile number",
+            "selectors": [
+                [
+                    "#root div:nth-of-type(3) input"
+                ]       
+            ]
+        },
+       
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to login",
+            "selectors": [
+                [
+                    "#root button"
+                ]     
+            ]
+        } ,
+
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to report death of family member",
+            "selectors": [
+                [
+                     "div:nth-of-type(8) h3"
+                ]     
+            ]
+        } ,
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Select state name",
+            "selectors": [
+                [
+                     "form > div > div:nth-of-type(1) select"
+                ]     
+            ]
+        },
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Aadhaar Number of deceased person",
+            "selectors": [
+                [
+                    "div:nth-of-type(2) input"
+                ]     
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Death registration number",
+            "selectors": [
+                [
+                    "form > div > div:nth-of-type(3) input"
+                ]     
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Name of the deceased person as in death certificate",
+            "selectors": [
+                [
+                    "div:nth-of-type(4) input"
+                ]     
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Select gender of the deceased person",
+            "selectors": [
+                [
+                     "div.deceased_form > div"
+                ]     
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Date of death of deceased person",
+            "selectors": [
+                [
+                     "div:nth-of-type(6) input"
+                ]     
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Date of issue of death certificate",
+            "selectors": [
+                [
+                    "div:nth-of-type(7) input"
+                ]     
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Upload death certificate",
+            "selectors": [
+                [
+                    "div.sc-krNlru > div > div > div"
+                ]     
+            ]
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "label": "Select relationship with deceased person",
+            "selectors": [
+                [
+                    "div:nth-of-type(9) select"
+                ]     
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Confirm it",
+            "selectors": [
+                [
+                     "div:nth-of-type(10) label"
+        
+                ]     
+            ]
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "label": "Submit the form",
+            "selectors": [
+                [
+                    "#root button"
+        
+                ]     
+            ]
+        }
+       
+        
+        
+    ]
+}

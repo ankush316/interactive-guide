@@ -1,5 +1,5 @@
 {
-    "title": "Retrieve Aadhaar number | Retrieve Aadhar number",
+    "title": "Retrieve Aadhaar number | Retrieve Aadhar number | Retrieve eid number | retrieve sid number | retrieve enrolment id number",
     "selectorAttribute": "data-testid",
     "steps": [
         
@@ -19,7 +19,7 @@
         {
             "type": "click",
             "target": "main",
-            "label": "Select Aadhar number",
+            "label": "Select an option to proceed",
             "selectors": [   
                [
                      ".retrieve-eid-uid-form__radio-group"

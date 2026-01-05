@@ -520,8 +520,15 @@
   }
 
 
+  const login = await loadTask("tasks/pipecat/login-aadhar.json");
+  const changeLanguage = await loadTask("tasks/pipecat/change-language.json");
   const downloadAadhar = await loadTask("tasks/pipecat/download-aadhar.json")  
   const retrieveAadharNumber = await loadTask("tasks/pipecat/retrieve-aadhar-number.json");
+  const verifyEmailOrMobile = await loadTask("tasks/pipecat/verify-email-or-mobile.json");
+  const reportDeathOfFamilyMember = await loadTask("tasks/pipecat/report-death-of-a-family-member.json");
+  const generateVID = await loadTask("tasks/pipecat/generate-vid.json");
+  const updateDocument = await loadTask("tasks/pipecat/update-document.json");
+  const checkBankSeedingStatus = await loadTask("tasks/pipecat/check-bank-seeding-status.json");
 
   const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
   const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
@@ -561,6 +568,20 @@
     ) {
       selectedJson = addOrg;
     }
+
+
+    if (      
+      login?.title &&
+      login.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = login;
+    }
+    if (
+      changeLanguage?.title &&
+      changeLanguage.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = changeLanguage;
+    }
     if (
       downloadAadhar?.title &&
       downloadAadhar.title.toLowerCase().includes(value.toLowerCase())
@@ -572,6 +593,36 @@
       retrieveAadharNumber.title.toLowerCase().includes(value.toLowerCase())
     ) {
       selectedJson = retrieveAadharNumber;
+    }
+    if (
+      verifyEmailOrMobile?.title &&
+      verifyEmailOrMobile.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = verifyEmailOrMobile;
+    }
+    if (
+      reportDeathOfFamilyMember?.title &&
+      reportDeathOfFamilyMember.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = reportDeathOfFamilyMember;
+    }
+    if (
+      generateVID?.title &&
+      generateVID.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = generateVID;
+    }
+    if (  
+      updateDocument?.title &&
+      updateDocument.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = updateDocument;
+    }
+    if (
+      checkBankSeedingStatus?.title &&
+      checkBankSeedingStatus.title.toLowerCase().includes(value.toLowerCase())
+    ) {
+      selectedJson = checkBankSeedingStatus;
     }
     input.value = "";
 

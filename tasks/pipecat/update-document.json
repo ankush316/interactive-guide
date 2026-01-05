@@ -1,0 +1,188 @@
+{
+    "title": "How to update document | update document | update aadhar document | update address in aadhar | update name in aadhar | update date of birth in aadhar",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to update document",
+            "selectors": [
+                [
+                     "div[role='button'][aria-label='Document Update']"
+                ]
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Read this for what documents need to be submit",
+            "selectors": [
+                [
+                    "div.du_pvc-screen__faq > div > div > div:nth-of-type(1) h3"
+                ]
+            ]  
+        }, 
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Read this for how documents need to be submit",
+            "selectors": [
+                [
+                    "div.du_pvc-screen__faq > div > div > div:nth-of-type(2) h3"
+                ]
+            ]  
+        }, 
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to submit",
+            "selectors": [
+                [
+                    "#root button"
+                ]
+            ]  
+        }, 
+        {
+            "type": "input",
+            "target": "main",
+            "label": "ou need to login before to proceed, Enter aadhar number",
+            "selectors": [
+                [
+                    "div.form-section__text-field input"
+                ]
+            ]  
+        }, 
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+                [
+                    "div.form-section__captcha-field-container input"
+                ]
+            ]  
+        }, 
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to login",
+            "selectors": [
+                [
+                    "#root button"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Verification code that you have received on your registered mobile number",
+            "selectors": [
+                [
+                    "#root div:nth-of-type(3) input"
+                ]
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to login",
+            "selectors": [
+                [
+                     "#root button"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Verification code that you have received on your registered mobile number",
+            "selectors": [
+                [
+                    "#root div:nth-of-type(3) input"
+                ]
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Fill this form to proceed",
+            "selectors": [
+                [
+                    "div.form_text-field section:nth-of-type(1)"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Select Proof Of Identity (POI) document type",
+            "selectors": [
+                [
+                    "section:nth-of-type(1) select"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Select Proof Of Identity (POI) document type",
+            "selectors": [
+                [
+                    "section:nth-of-type(1) select"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Click here to upload document",
+            "selectors": [
+                [
+                    "div.form_text-field section:nth-of-type(1)"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Select Proof Of Address (POA) document type",
+            "selectors": [
+                [
+                     "section:nth-of-type(2) select"
+                ]
+            ]  
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Click here to upload document",
+            "selectors": [
+                [
+                    "section:nth-of-type(2)"
+                ]
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "mark it checked to proceed",
+            "selectors": [
+                [
+                    "div.form__input-display svg"
+                ]
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "click here to proceed next",
+            "selectors": [
+                [
+                    "#root div:nth-of-type(2) > button"
+                ]
+            ]  
+        }
+         
+       
+    ]
+}

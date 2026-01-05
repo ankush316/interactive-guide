@@ -1,0 +1,101 @@
+{
+    "title": "Verify Email or Mobile | Verify Email | Verify Mobile | Verify Phone Number | Verify Contact Number | Verify Contact | Verify via Email or Mobile",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to Verify mobile number or email",
+            "selectors": [
+                [
+                    "div.unauthenticated-page div:nth-of-type(1) > div:nth-of-type(3) > div"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Select email or mobile to proceed",
+            "selectors": [   
+               [
+                    "div.pvc-form__radio-group"
+                ]    
+            ]
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your Aadhaar number",
+            "selectors": [
+               [
+                    ".auth-form__text-field input"
+                ]       
+            ] 
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter your Aadhaar number",
+            "selectors": [  
+                [
+                    "div.pvc-form__form-container > div:nth-of-type(1) input"
+                ]       
+           ]       
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter mobile number or email to send OTP",
+            "selectors": [
+                [
+                   "div.pvc-form__form-container > div:nth-of-type(2) input"
+                ]               
+            ]    
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+                [
+                    "div.pvc-form__captcha-field-container input"
+                ]               
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to sent OTP",
+            "selectors": [
+                [
+                     "#root button"
+                ]       
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the Verification code received on your registered mobile number / email",
+            "selectors": [
+                [
+                    "div:nth-of-type(5) input"
+                ]       
+            ]
+        },
+       
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to verify OTP",
+            "selectors": [
+                [
+                    "div:nth-of-type(6)"
+                ]     
+            ]
+        } 
+    ]
+}

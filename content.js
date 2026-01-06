@@ -1,9 +1,12 @@
-
 (async function () {
   // Prevent double injection
   if (window.__GUIDE_LOADED__) return;
   window.__GUIDE_LOADED__ = true;
+  let __guideAllowUnload = false;
 
+  const GUIDE_STORAGE_KEY = "__guide_state__";
+  const GUIDE_STALE_TIME = 10 * 60 * 1000; // 10 minutes
+  
   async function loadTask(path) {
     try {
       const url = chrome.runtime.getURL(path);
@@ -20,13 +23,12 @@
     }
   }
 
-  
   let interactionLockCleanup = null;
 
   function lockInteractions(allowedElement) {
     unlockInteractions(); // safety
   
-    document.body.classList.add("__guide-locked"); // ✅ ADD HERE
+    document.body.classList.add("__guide-locked");
   
     const handler = e => {
       if (allowedElement && allowedElement.contains(e.target)) return;
@@ -66,32 +68,28 @@
       document.removeEventListener("pointerdown", handler, true);
       document.removeEventListener("keydown", keyHandler, true);
   
-      document.body.classList.remove("__guide-locked"); // 🔓 REMOVE HERE
+      document.body.classList.remove("__guide-locked");
     };
   }
 
   function cancelGuide(reason = "cancelled") {
     console.log("🛑 Guide cancelled:", reason);
   
-    // Cleanup listeners
     if (activeListenerCleanup) {
       activeListenerCleanup();
       activeListenerCleanup = null;
     }
   
-    // Clear UI state
     clearHighlight();
-  
-    // Reset steps
     steps = [];
     currentStepIndex = 0;
   
-    // Optional user feedback
-    addMessage("❌ Guide cancelled. You can continue normally.");
+    clearGuideState();
   
-    // Remove ESC listener (important)
+    addMessage("❌ Guide cancelled. You can continue normally.");
     document.removeEventListener("keydown", escKeyHandler, true);
   }
+  
 
   function escKeyHandler(e) {
     if (e.key === "Escape") {
@@ -111,10 +109,7 @@
     document.body.classList.remove("__guide-locked"); // safety
   }
 
-  let selectedJson = {};
   if (document.getElementById("my-chatbot")) {
-    
-
     console.warn("Chatbot already injected");
     return;
   }
@@ -167,16 +162,6 @@
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
 
-  function describeStep(step) {
-    switch (step.type) {
-      case "navigate": return `Go to ${step.url}`;
-      case "click": return `Click this element`;
-      case "change": return `Type "${step.value}"`;
-      case "keyDown": return `Press ${step.key}`;
-      default: return `Perform ${step.type}`;
-    }
-  }
-
   function findElement(selectors) {
     console.log("trying to find element", selectors);
     for (const group of selectors || []) {
@@ -221,7 +206,6 @@
   function highlight(el, label = "") {
     if (!el || !el.isConnected) return;
 
-    // Cleanup previous state
     currentEl = el;
     document
       .querySelectorAll(".__guide-focus")
@@ -231,13 +215,12 @@
       currentTooltip.remove();
       currentTooltip = null;
     }
-    //el.scrollIntoView({ behavior: "smooth", block: "center" });
     
     showSpotlight(el);
 
     el.classList.add("__guide-focus");
 
-    lockInteractions(el); // 🔥 THIS IS THE KEY
+    lockInteractions(el);
     if (!label) return;
 
     const rect = el.getBoundingClientRect();
@@ -257,11 +240,9 @@
     const tRect = tooltip.getBoundingClientRect();
     const margin = 8;
     const offset = 12; 
-    // Try ABOVE first
     let top = rect.top - tRect.height - margin - offset;
     let place = "top";
 
-    // If not enough space, place BELOW
     if (top < margin) {
       top = rect.bottom + margin + offset;
       place = "bottom";
@@ -273,7 +254,6 @@
     tooltip.style.top = `${top}px`;
     tooltip.style.left = `${left}px`;
 
-    // Arrow
     tooltip.style.setProperty("--arrow-pos", place);
 
     const arrow = document.createElement("div");
@@ -305,20 +285,28 @@
     });
     currentTooltip = tooltip;
   }
-  window.addEventListener("beforeunload", () => {
+
+  window.addEventListener("beforeunload", e => {
+    if (__guideAllowUnload) return;
     cancelGuide("page_unload");
+    e.preventDefault();
+    e.returnValue = 'Guide in progress. Are you sure you want to leave?';
+  });
+
+  window.addEventListener("load", () => {
+    __guideAllowUnload = false;
   });
   
   function advance() {
-    if (!steps.length) return; // cancelled already
+    if (!steps.length) return;
 
     clearHighlight();
     currentStepIndex++;
+    saveGuideState({ stepIndex: currentStepIndex });
     runNextStep();
   }
 
   function clearHighlight() {
-    // 1. Remove element highlights
     currentEl = null;
     document
       .querySelectorAll(".__guide-dotted, .__guide-focus, .__guide-animate")
@@ -328,22 +316,16 @@
         el.style.zIndex = "";
       });
   
-    // 2. Remove tooltip
     if (currentTooltip) {
       currentTooltip.remove();
       currentTooltip = null;
     }
   
-    // 3. Remove spotlight overlay
     const overlay = document.querySelector(".__guide-overlay");
     if (overlay) overlay.remove();
   
-    // 4. Remove interaction locks
-    if (typeof unlockInteractions === "function") {
-      unlockInteractions();
-    }
+    unlockInteractions();
   
-    // 5. Safety: remove any leftover guide artifacts
     document
       .querySelectorAll(".__guide-hole")
       .forEach(el => el.remove());
@@ -351,18 +333,63 @@
   
   let steps = [];
   let currentStepIndex = 0;
-  let activeListenerCleanup = null; // Add this line
-  window.addEventListener("DOMContentLoaded", async () => {
-    const restored = restoreGuideState();
+  let activeListenerCleanup = null;
+
+  window.addEventListener("load", async () => {
+    __guideAllowUnload = false;
+  
+    const restored = await restoreGuideState();
     if (restored) {
-      await new Promise(r => setTimeout(r, 300)); // allow UI to settle
+      await new Promise(r => setTimeout(r, 700));
       runNextStep();
     }
   });
 
-  function clearGuideState() {
-    sessionStorage.removeItem("__guide_state__");
+  function saveGuideState(extra = {}) {
+    if (!steps.length) return;
+    chrome.storage.local.set({
+      [GUIDE_STORAGE_KEY]: {
+        active: true,
+        stepIndex: currentStepIndex,
+        steps,
+        origin: location.origin,
+        url: location.href,
+        timestamp: Date.now(),
+        ...extra
+      }
+    });
   }
+
+  async function restoreGuideState() {
+    const data = await chrome.storage.local.get(GUIDE_STORAGE_KEY);
+    const state = data[GUIDE_STORAGE_KEY];
+    if (!state || !state.active) return false;
+  
+    if (Date.now() - state.timestamp > GUIDE_STALE_TIME) {
+      await clearGuideState();
+      return false;
+    }
+
+    const sameAadhaarFlow =
+      location.hostname.endsWith("uidai.gov.in") &&
+      new URL(state.origin).hostname.endsWith("uidai.gov.in");
+
+    if (!sameAadhaarFlow) return false;
+  
+    
+    steps = state.steps;
+    currentStepIndex = state.stepIndex;
+    addMessage("🤖 Resuming guide from previous step.");
+    document.addEventListener("keydown", escKeyHandler, true);
+    return true;
+  }
+
+
+  async function clearGuideState() {
+    await chrome.storage.local.remove(GUIDE_STORAGE_KEY);
+  }
+
+
 
   (function patchHistory() {
     ["pushState", "replaceState"].forEach(fn => {
@@ -379,43 +406,28 @@
     });
   })();
 
-  window.addEventListener("spa:navigation", () => {
+
+  window.addEventListener("spa:navigation", async () => {
+    if (steps.length === 0) return;
     saveGuideState();
-    setTimeout(runNextStep, 300);
+    __guideAllowUnload = false; // reset for new page
+    setTimeout(runNextStep, 500); // increased delay for SPA hydration
   });
   
 
-  if (!steps) {
-    clearHighlight();
-    clearGuideState();
-    return;
-  }
-  function restoreGuideState() {
-    const raw = sessionStorage.getItem("__guide_state__");
-    if (!raw) return false;
-  
-    try {
-      const state = JSON.parse(raw);
-      steps = state.steps;
-      currentStepIndex = state.stepIndex;
-      return true;
-    } catch {
-      return false;
-    }
-  }
-  function waitForClick(el) {
+  function waitForClick(el, step) {
     const handler = e => {
-      // Ensure correct element (or inside it)
-      if (el.contains(e.target)) {
-        saveGuideState();
+      if (!el.contains(e.target)) return;
 
-        advance();
+      if (step?.allowNavigation) {
+        __guideAllowUnload = true;
       }
+
+      setTimeout(advance, 100); // small delay to allow navigation if needed
     };
   
     document.addEventListener("click", handler, true);
   
-    // Cleanup function
     return () => {
       document.removeEventListener("click", handler, true);
     };
@@ -425,36 +437,25 @@
   function waitForInput(el) {
     let timeout;
   
-    const handler = e => {
-      if (e.target === el) {
-        // Clear the previous timer every time the user types
-        clearTimeout(timeout);
-  
-        // Start a new timer for 1 second
-        timeout = setTimeout(() => {
-          advance();
-        }, 1000); 
-      }
+    const handler = () => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        advance();
+      }, 1000); 
     };
   
     el.addEventListener("input", handler, true);
     el.addEventListener("change", handler, true);
   
-    // Cleanup function
     return () => {
-      clearTimeout(timeout); // Clear any pending advance
+      clearTimeout(timeout);
       el.removeEventListener("input", handler, true);
       el.removeEventListener("change", handler, true);
     };
   }
 
 
-  function saveGuideState() {
-    sessionStorage.setItem("__guide_state__", JSON.stringify({
-      stepIndex: currentStepIndex,
-      steps
-    }));
-  }
+
 
   async function runNextStep() {
     if (activeListenerCleanup) {
@@ -462,32 +463,35 @@
       activeListenerCleanup = null;
     }
   
-    const step = steps[currentStepIndex];
-    if (!step) {
+    if (currentStepIndex >= steps.length) {
       clearHighlight();
+      addMessage("✅ Guide completed!");
+      clearGuideState();
+      document.removeEventListener("keydown", escKeyHandler, true);
       return;
     }
   
-    // 🕒 Retry logic: Look for the element every 200ms for up to 3 seconds
+    const step = steps[currentStepIndex];
+
     let el = null;
-    for (let i = 0; i < 15; i++) { 
+    for (let i = 0; i < 20; i++) { // increased retries
       el = findElement(step.selectors);
       if (el) break; 
-      await new Promise(resolve => setTimeout(resolve, 200)); 
+      await new Promise(resolve => setTimeout(resolve, 300)); 
     }
   
     if (!el) {
       console.warn("⚠️ Element not found after retries", step);
+      addMessage("⚠️ Could not find the next element. Guide paused. Try again or cancel.");
       return;
     }
   
     highlight(el, step.label || "");
   
-    if (step.type === "click") activeListenerCleanup = waitForClick(el);
+    if (step.type === "click") activeListenerCleanup = waitForClick(el, step);
     if (step.type === "change") activeListenerCleanup = waitForInput(el);
   }
 
-  // 🔥 Frontend entry points
   window.helpUserFromJSON = function (json) {
     if (!json || !Array.isArray(json.steps)) {
       console.error("Invalid guide JSON");
@@ -496,18 +500,19 @@
 
     steps = json.steps;
     currentStepIndex = 0;
+    saveGuideState({ stepIndex: 0 });
 
-    addMessage("🤖 I'll guide you step by step. Click 'Next' to continue.");
+    addMessage("🤖 Starting new guide: " + (json.title || "Untitled"));
+    addMessage("🤖 Press ESC to cancel at any time.");
 
-    addMessage("🤖 I'll guide you step by step. Press ESC to cancel.");
-
-    document.addEventListener("keydown", escKeyHandler, true); // ✅ ADD
+    document.addEventListener("keydown", escKeyHandler, true);
     runNextStep();
   };
 
   function nextStep() {
     if (currentStepIndex < steps.length - 1) {
       currentStepIndex++;
+      saveGuideState({ stepIndex: currentStepIndex });
       runNextStep();
     }
   }
@@ -515,11 +520,13 @@
   function prevStep() {
     if (currentStepIndex > 0) {
       currentStepIndex--;
+      saveGuideState({ stepIndex: currentStepIndex });
       runNextStep();
     }
   }
 
 
+  // Load tasks
   const login = await loadTask("tasks/pipecat/login-aadhar.json");
   const changeLanguage = await loadTask("tasks/pipecat/change-language.json");
   const downloadAadhar = await loadTask("tasks/pipecat/download-aadhar.json")  
@@ -533,113 +540,57 @@
   const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
   const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
 
-  window.helpUserFromSteps = function (stepsArray) {
-    steps = stepsArray || [];
-    currentStepIndex = 0;
-    document.addEventListener("keydown", escKeyHandler, true); // ✅ ADD
+  const aadharTasks = [login, changeLanguage, downloadAadhar, retrieveAadharNumber, verifyEmailOrMobile, reportDeathOfFamilyMember, generateVID, updateDocument, checkBankSeedingStatus].filter(Boolean);
+  const pipedriveTasks = [addContact, addOrg].filter(Boolean);
 
-    runNextStep();
-  };
+  let currentTasks = [];
+
+  if (location.hostname.includes('uidai.gov.in') || location.hostname.includes('myaadhaar.uidai.gov.in')) {
+    currentTasks = aadharTasks;
+  } else if (location.hostname.includes('pipedrive.com')) {
+    currentTasks = pipedriveTasks;
+  }
+
+  if (currentTasks.length > 0) {
+    addMessage("Available guides: " + currentTasks.map(t => t.title).join(", "));
+    addMessage("Type the name of a guide to start it.");
+  } else {
+    addMessage("No guides available for this site.");
+  }
 
   function sendMessage() {
-    console.log('hey')
-   
-
-    if (!addContact) {
-      addMessage("⚠️ Guide not loaded yet, please try again.");
-      return;
-    }
-    console.log("trying to highlight");
     const value = input.value.trim();
     if (!value) return;
 
     addMessage("You: " + value);
-    selectedJson = null;
-    if (
-      addContact?.title &&
-      addContact.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = addContact;
-    }
 
-    if (
-      addOrg?.title &&
-      addOrg.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = addOrg;
-    }
-
-
-    if (      
-      login?.title &&
-      login.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = login;
-    }
-    if (
-      changeLanguage?.title &&
-      changeLanguage.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = changeLanguage;
-    }
-    if (
-      downloadAadhar?.title &&
-      downloadAadhar.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = downloadAadhar;
-    }
-    if (
-      retrieveAadharNumber?.title &&
-      retrieveAadharNumber.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = retrieveAadharNumber;
-    }
-    if (
-      verifyEmailOrMobile?.title &&
-      verifyEmailOrMobile.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = verifyEmailOrMobile;
-    }
-    if (
-      reportDeathOfFamilyMember?.title &&
-      reportDeathOfFamilyMember.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = reportDeathOfFamilyMember;
-    }
-    if (
-      generateVID?.title &&
-      generateVID.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = generateVID;
-    }
-    if (  
-      updateDocument?.title &&
-      updateDocument.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = updateDocument;
-    }
-    if (
-      checkBankSeedingStatus?.title &&
-      checkBankSeedingStatus.title.toLowerCase().includes(value.toLowerCase())
-    ) {
-      selectedJson = checkBankSeedingStatus;
-    }
     input.value = "";
 
-    // You control JSON from frontend
-    if (selectedJson) {
-      console.log("trying to highlight");
-      window.helpUserFromJSON(selectedJson);
+    if (currentTasks.length === 0) {
+      addMessage("No guides available here.");
+      return;
+    }
+
+    const matching = currentTasks.filter(t => t.title && t.title.toLowerCase().includes(value.toLowerCase()));
+
+    if (matching.length === 0) {
+      addMessage("No matching guide found. Try typing part of the title.");
+    } else if (matching.length > 1) {
+      addMessage("Multiple matches: " + matching.map(t => t.title).join(", "));
+    } else {
+      const selected = matching[0];
+      addMessage("Starting: " + selected.title);
+      window.helpUserFromJSON(selected);
     }
   }
+
   button.addEventListener("click", sendMessage);
   input.addEventListener("keydown", e => {
     if (e.key === "Enter") sendMessage();
   });
 
   toggle.addEventListener("click", () => {
-    chatbot.style.display =
-      chatbot.style.display === "none" ? "flex" : "none";
+    chatbot.style.display = chatbot.style.display === "none" ? "flex" : "none";
   });
 
 })();

@@ -8,27 +8,7 @@
             "label": "Click here to update document",
             "selectors": [
                 [
-                     "div[role='button'][aria-label='Document Update']"
-                ]
-            ]  
-        },
-        {
-            "type": "click",
-            "target": "main",
-            "label": "Read this for what documents need to be submit",
-            "selectors": [
-                [
-                    "div.du_pvc-screen__faq > div > div > div:nth-of-type(1) h3"
-                ]
-            ]  
-        }, 
-        {
-            "type": "click",
-            "target": "main",
-            "label": "Read this for how documents need to be submit",
-            "selectors": [
-                [
-                    "div.du_pvc-screen__faq > div > div > div:nth-of-type(2) h3"
+                     "div[role='button'][aria-label='Document update']"
                 ]
             ]  
         }, 
@@ -36,9 +16,10 @@
             "type": "click",
             "target": "main",
             "label": "Click here to submit",
+            "allowNavigation": true,
             "selectors": [
                 [
-                    "#root button"
+                    ".du_pvc-form__button"
                 ]
             ]  
         }, 

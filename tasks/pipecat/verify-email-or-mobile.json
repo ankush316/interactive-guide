@@ -7,6 +7,7 @@
             "type": "click",
             "target": "main",
             "label": "Click here to Verify mobile number or email",
+            "allowNavigation": true,
             "selectors": [
                 [
                     "div.unauthenticated-page div:nth-of-type(1) > div:nth-of-type(3) > div"

@@ -1,0 +1,50 @@
+{
+    "title": "Check PVC card status | check PVC status | check postal verification certificate status | check postal verification certificate card status",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to check PVC card status",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Check Aadhaar PVC card order status']"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter SRN",
+            "selectors": [
+               [
+                     "div.pvc-form__text-field input"
+                ]       
+            ] 
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the Captcha",
+            "selectors": [  
+              [
+                    "div.pvc-form__captcha-field > div > div > div"
+                ]       
+           ]       
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on submit",
+            "selectors": [
+                [
+                    "div.pvc-form__button-container > div"
+                ]     
+            ]
+        } 
+    ]
+}

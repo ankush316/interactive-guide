@@ -6,6 +6,7 @@
             "type": "click",
             "target": "main",
             "label": "Click here to lock or unlock aadhar",
+            "allowNavigation": true,
             "selectors": [
                 [
                     "div[role='button'][aria-label='Lock / Unlock Aadhaar']"    
@@ -16,6 +17,7 @@
             "type": "click",
             "target": "main",
             "label": "Click on next button",
+            "allowNavigation": true,
             "selectors": [
                 [
                    "div.form-buttons__container > div"

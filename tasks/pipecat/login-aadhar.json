@@ -7,6 +7,7 @@
             "type": "click",
             "target": "main",
             "label": "Click on login button to proceed",
+            "allowNavigation": true,
             "selectors": [   
                [
                     ".login-section__card"

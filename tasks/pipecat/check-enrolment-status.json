@@ -1,17 +1,17 @@
 {
-    "title": "Generate VID | Generate Virtual ID | How to generate VID | Generate VID | Retrieve VID | How to retrieve VID | Retrieve Virtual ID",
+    "title": "Check enrolment status | check enrolment status in aadhar | check aadhar enrolment status | check erolment update status",
     "selectorAttribute": "data-testid",
     "steps": [
         
         {
             "type": "click",
             "target": "main",
-            "label": "Click here to generate | retrieve VID",
+            "label": "Click here to check enrolment status",
             "allowNavigation": true,
             "selectors": [
                 [
-                    "div:nth-of-type(1) > div:nth-of-type(6) > div"
-                ]
+                    "div[role='button'][aria-label='Check  enrolment or update status']"
+                  ]
             ]  
         },
         
@@ -21,7 +21,7 @@
             "label": "Choose an option to proceed",
             "selectors": [   
                [
-                     "div.auth-form__radio-group"
+                    ".auth-form__radio-group"
                 ]    
             ]
         },
@@ -29,10 +29,10 @@
         {
             "type": "input",
             "target": "main",
-            "label": "Enter your Aadhaar number",
+            "label": "Enter 14 digit Enrolment Number",
             "selectors": [
-                [
-                      "div.auth-form__text-field input"
+               [
+                    "form > div > div:nth-of-type(2) input"
                 ]       
             ] 
         },
@@ -40,41 +40,40 @@
          {
             "type": "input",
             "target": "main",
-            "label": "Enter the Captcha",
+            "label": "Select Date",
             "selectors": [  
-                [
-                    "div.auth-form__captcha-field-container input"
+              [
+                    "#calender"
                 ]       
            ]       
         },
         {
-            "type": "click",
+            "type": "input",
             "target": "main",
-            "label": "Click here to send OTP",
+            "label": "Select Time",
             "selectors": [
                 [
-                   "#root button"
+                    "#timepick"
                 ]               
-            ]    
+            ]  
         },
-       
         {
             "type": "input",
             "target": "main",
-            "label": "Enter the OTP received on your registered mobile number",
+            "label": "Enter captcha",
             "selectors": [
                 [
-                    "div.MX_20 input"
+                     "div.aadhaar-form__captcha-field-container input"
                 ]       
             ]
         },
         {
             "type": "click",
             "target": "main",
-            "label": "Click here to verify OTP",
+            "label": "Click to submit",
             "selectors": [
                 [
-                    "div:nth-of-type(5) button"
+                     "div.aadhaar-form__button-container > div"
                 ]     
             ]
         } 

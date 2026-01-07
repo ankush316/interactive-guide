@@ -72,6 +72,7 @@
             "type": "click",
             "target": "main",
             "label": "Click here to login",
+            "allowNavigation": true,
             "selectors": [
                 [
                     "#root button"

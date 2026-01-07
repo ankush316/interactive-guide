@@ -73,7 +73,6 @@
   }
 
   function cancelGuide(reason = "cancelled") {
-    console.log("🛑 Guide cancelled:", reason);
   
     if (activeListenerCleanup) {
       activeListenerCleanup();
@@ -114,8 +113,6 @@
     return;
   }
 
-  console.log("✅ Content script initialized");
-
   // Create chatbot container
   const chatbot = document.createElement("div");
   chatbot.id = "my-chatbot";
@@ -123,8 +120,9 @@
   chatbot.innerHTML = `
     <div id="my-chatbot-header">
       <span>Need Help?</span>
-      <button id="cancel-guide" title="Cancel guide">✕</button>
-      <span id="toggle" style="float:right;cursor:pointer">—</span>
+      <span id="cancel-guide" style="float:right;cursor:pointer" title="Cancel guide">X</span>
+      <span id="toggle" style="float:right;cursor:pointer;margin-right:10px" title="Toggle chatbot">__</span>
+      
     </div>
     <div id="my-chatbot-messages"></div>
     <div id="my-chatbot-input">
@@ -150,7 +148,7 @@
 
   messagesDiv.style.flex = "1";
   messagesDiv.style.overflowY = "auto";
-  messagesDiv.style.padding = "8px";
+  messagesDiv.style.padding = "10px";
 
   chatbot.addEventListener("click", e => e.stopPropagation());
 
@@ -238,7 +236,7 @@
     document.body.appendChild(tooltip);
 
     const tRect = tooltip.getBoundingClientRect();
-    const margin = 8;
+    const margin = 10;
     const offset = 12; 
     let top = rect.top - tRect.height - margin - offset;
     let place = "top";
@@ -301,6 +299,7 @@
     if (!steps.length) return;
 
     clearHighlight();
+    addMessage('hre')
     currentStepIndex++;
     saveGuideState({ stepIndex: currentStepIndex });
     runNextStep();
@@ -416,6 +415,7 @@
   
 
   function waitForClick(el, step) {
+    
     const handler = e => {
       if (!el.contains(e.target)) return;
 
@@ -435,6 +435,7 @@
 
 
   function waitForInput(el) {
+    
     let timeout;
   
     const handler = () => {
@@ -452,23 +453,24 @@
       el.removeEventListener("input", handler, true);
       el.removeEventListener("change", handler, true);
     };
+  
   }
 
-
-
-
   async function runNextStep() {
+    
     if (activeListenerCleanup) {
       activeListenerCleanup();
       activeListenerCleanup = null;
     }
   
     if (currentStepIndex >= steps.length) {
+    
       clearHighlight();
-      addMessage("✅ Guide completed!");
+      
       clearGuideState();
       document.removeEventListener("keydown", escKeyHandler, true);
       return;
+    
     }
   
     const step = steps[currentStepIndex];
@@ -481,8 +483,7 @@
     }
   
     if (!el) {
-      console.warn("⚠️ Element not found after retries", step);
-      addMessage("⚠️ Could not find the next element. Guide paused. Try again or cancel.");
+   
       return;
     }
   
@@ -502,19 +503,40 @@
     currentStepIndex = 0;
     saveGuideState({ stepIndex: 0 });
 
-    addMessage("🤖 Starting new guide: " + (json.title || "Untitled"));
-    addMessage("🤖 Press ESC to cancel at any time.");
-
     document.addEventListener("keydown", escKeyHandler, true);
     runNextStep();
   };
 
+
+
   function nextStep() {
     if (currentStepIndex < steps.length - 1) {
-      currentStepIndex++;
-      saveGuideState({ stepIndex: currentStepIndex });
-      runNextStep();
+      const step = steps[currentStepIndex];
+      if (!step) return;
+    
+      const { type, allowNavigation, selectors } = step;
+    
+      // 🔹 CASE 1: Click + navigation allowed
+      if (type === "click" && allowNavigation) {
+        const el = findElement(selectors);
+        if (!el) {
+          console.warn("Element not found for step", currentStepIndex);
+          return;
+        }
+    
+        // Save NEXT step index before navigation
+        saveGuideState({ stepIndex: currentStepIndex + 1 });
+    
+        // Let the browser navigate naturally
+        el.click();
+      }else{
+        currentStepIndex++;
+        saveGuideState({ stepIndex: currentStepIndex });
+        runNextStep();
+      }
     }
+  
+    
   }
   
   function prevStep() {
@@ -553,8 +575,6 @@
   }
 
   if (currentTasks.length > 0) {
-    addMessage("Available guides: " + currentTasks.map(t => t.title).join(", "));
-    addMessage("Type the name of a guide to start it.");
   } else {
     addMessage("No guides available for this site.");
   }

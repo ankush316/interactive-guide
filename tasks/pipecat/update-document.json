@@ -26,7 +26,7 @@
         {
             "type": "input",
             "target": "main",
-            "label": "ou need to login before to proceed, Enter aadhar number",
+            "label": "You need to login before to proceed, Enter aadhar number",
             "selectors": [
                 [
                     "div.form-section__text-field input"

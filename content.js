@@ -536,11 +536,12 @@
   const generateVID = await loadTask("tasks/pipecat/generate-vid.json");
   const updateDocument = await loadTask("tasks/pipecat/update-document.json");
   const checkBankSeedingStatus = await loadTask("tasks/pipecat/check-bank-seeding-status.json");
+  const lockUnlockAadhar = await loadTask("tasks/pipecat/lock-unlock-aadhar.json");
 
   const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
   const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
 
-  const aadharTasks = [login, changeLanguage, downloadAadhar, retrieveAadharNumber, verifyEmailOrMobile, reportDeathOfFamilyMember, generateVID, updateDocument, checkBankSeedingStatus].filter(Boolean);
+  const aadharTasks = [login, changeLanguage, downloadAadhar, retrieveAadharNumber, verifyEmailOrMobile, reportDeathOfFamilyMember, generateVID, updateDocument, checkBankSeedingStatus, lockUnlockAadhar].filter(Boolean);
   const pipedriveTasks = [addContact, addOrg].filter(Boolean);
 
   let currentTasks = [];

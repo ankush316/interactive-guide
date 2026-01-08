@@ -1,0 +1,50 @@
+{
+    "title": "check grievance | check complaint status | check grievance status | check feedback status | check complaint | check feedback",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to check grievance or feedback status",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Check grievance / feedback status']"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Service Request Number",
+            "selectors": [
+               [
+                   "div.pvc-form__text-field input"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+               [
+                     "div.pvc-form__captcha-field-container input"
+                ]       
+            ] 
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on submit",
+            "allowNavigation": true,
+            "selectors": [
+               [
+                    "div.pvc-form__button-container > div"
+                ]       
+            ] 
+        }
+    ]
+}

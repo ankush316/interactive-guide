@@ -1,0 +1,80 @@
+{
+    "title": "Book appointment | How to book appointment | Schedule appointment",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to book appointment",
+            "selectors": [
+                [
+                   "div[role='button'][aria-label='Book an appointment']"
+                    
+                ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label":  "flutter-view",
+            "selectors": [   
+                [
+                   "flutter-view"
+                ]    
+            ]
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label":  "flutter-view",
+            "selectors": [   
+                [
+                   "flutter-view input"
+                ]    
+            ]
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "label":  "flutter-view",
+            "selectors": [   
+                [
+                   "flutter-view input"
+                ]    
+            ]
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "label":  "flutter-view",
+            "selectors": [   
+                [
+                   "flutter-view input"
+                ]    
+            ]
+        },
+         
+        {
+            "type": "click",
+            "target": "main",
+            "label":  "flutter-view",
+            "selectors": [   
+                [
+                   "flutter-view"
+                ]    
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label":  "flutter-view",
+            "selectors": [   
+                [
+                   "flutter-view input"
+                ]    
+            ]
+        }
+    ]
+}

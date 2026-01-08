@@ -1,0 +1,50 @@
+{
+    "title": "Check deceased aadhar activation status | check aadhaar deactivation status",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to check PVC card status",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Check deceased Aadhaar deactivation status']"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter 'S' followed by 27 digit number",
+            "selectors": [
+               [
+                    "div.auth-form__text-field input"
+                ]       
+            ] 
+        },
+        
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Enter the Captcha",
+            "selectors": [  
+              [
+                   "div.aadhaar-form__captcha-field > div > div > div"
+                ]       
+           ]       
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on submit",
+            "selectors": [
+                [
+                    "div.aadhaar-form__button-container > div"
+                ]     
+            ]
+        } 
+    ]
+}

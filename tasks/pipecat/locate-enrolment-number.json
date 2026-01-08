@@ -1,0 +1,29 @@
+{
+    "title": "locate enrolment number | locate enrolment ID",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to locate enrolment number",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Locate enrolment center']"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter City or Location (ex:chennai or Birla temple)",
+            "selectors": [
+               [
+                    "#Val"
+                ]       
+            ] 
+        }
+    ]
+}

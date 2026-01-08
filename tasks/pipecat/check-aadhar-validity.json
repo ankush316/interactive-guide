@@ -1,0 +1,50 @@
+{
+    "title": "check aadhar validity | check aadhaar validity | check validity of aadhar | check validity| check aadhar validity status",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to locate enrolment number",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Check Aadhaar validity']"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Aadhar number",
+            "selectors": [
+               [
+                    "div.auth-form__text-field input"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+               [
+                    "div.auth-form__captcha-field-container input"
+                ]       
+            ] 
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on submit",
+            "allowNavigation": true,
+            "selectors": [
+               [
+                    "#root button"
+                ]       
+            ] 
+        }
+    ]
+}

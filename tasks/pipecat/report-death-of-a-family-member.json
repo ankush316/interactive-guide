@@ -10,13 +10,13 @@
             "allowNavigation": true,
             "selectors": [
                 [
-                    "div:nth-of-type(1) > div:nth-of-type(4) div.service-card__info-text"
+                    "div[role='button'][aria-label='Report death of a family member ']"
                 ]
             ]  
         },
         
         {
-            "type": "click",
+            "type": "input",
             "target": "main",
             "label": "Login first if you not logged in , First Enter your Aadhaar number",
             "selectors": [   
@@ -25,25 +25,13 @@
                 ]    
             ]
         },
-        
-        
-         {
-            "type": "input",
-            "target": "main",
-            "label": "Enter your Aadhaar number",
-            "selectors": [  
-                [
-                    "div.pvc-form__form-container > div:nth-of-type(1) input"
-                ]       
-           ]       
-        },
         {
             "type": "input",
             "target": "main",
             "label": "Enter Captcha",
             "selectors": [
                 [
-                    "div.pvc-form__captcha-field-container input"
+                    "div.form-section__captcha-field-container input"
                 ]               
             ]  
         },
@@ -86,17 +74,17 @@
             "label": "Click here to report death of family member",
             "selectors": [
                 [
-                     "div:nth-of-type(8) h3"
+                    "div:nth-of-type(8) div.service-card__info-text > div"
                 ]     
             ]
         } ,
         {
-            "type": "click",
+            "type": "input",
             "target": "main",
             "label": "Select state name",
             "selectors": [
                 [
-                     "form > div > div:nth-of-type(1) select"
+                    "form > div > div:nth-of-type(1) select"
                 ]     
             ]
         },
@@ -126,7 +114,7 @@
             "label": "Enter Name of the deceased person as in death certificate",
             "selectors": [
                 [
-                    "div:nth-of-type(4) input"
+                    "div.deceased_form div:nth-of-type(4) > div > div > div"
                 ]     
             ]
         },
@@ -136,7 +124,7 @@
             "label": "Select gender of the deceased person",
             "selectors": [
                 [
-                     "div.deceased_form > div"
+                    "div.auth-form__radio-group"
                 ]     
             ]
         },

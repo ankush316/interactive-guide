@@ -1,0 +1,132 @@
+{
+    "title": "grievance | feedback | complaint | add grievance | add feedback | add complaint",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to check grievance or feedback status",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Grievance and feedback']"
+                  ]
+            ]  
+        },
+        
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Name as per Aadhaar",
+            "selectors": [
+               [
+                   "div.rS input"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Mobile Number",
+            "selectors": [
+               [
+                   "div:nth-of-type(2) input"
+                ]       
+            ] 
+        },
+       
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter email address",
+            "selectors": [
+               [
+                    "form > div:nth-of-type(3) input"
+                ]       
+            ] 
+        },
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Select state",
+            "selectors": [
+               [
+                   "div:nth-of-type(4) select"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Select enquirer",
+            "selectors": [
+               [
+                    "div:nth-of-type(5) select"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Select documentType1",
+            "selectors": [
+               [
+                    "div:nth-of-type(6) select"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Select documentType2",
+            "selectors": [
+               [
+                    "div:nth-of-type(8) select"
+                ]       
+            ] 
+        },
+         {
+            "type": "input",
+            "target": "main",
+            "label": "Select documentType( if any )",
+            "selectors": [
+               [
+                    "div.sc-krNlru > div"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Right the grievance or feedback in the text area",
+            "selectors": [
+               [
+                     "#fileComplaintTextArea"
+                ]       
+            ] 
+        },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Enter Captcha",
+            "selectors": [
+               [
+                    "div.aadhaar-form__captcha-field-container input"
+                ]       
+            ] 
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on next",
+            "allowNavigation": true,
+            "selectors": [
+               [
+                    "#root div:nth-of-type(2) > button"
+                ]       
+            ] 
+        }
+    ]
+}

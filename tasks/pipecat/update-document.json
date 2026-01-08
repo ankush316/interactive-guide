@@ -26,7 +26,7 @@
         {
             "type": "input",
             "target": "main",
-            "label": "You need to login before to proceed, Enter aadhar number",
+            "label": "You need to login before proceed, Enter aadhar number",
             "selectors": [
                 [
                     "div.form-section__text-field input"
@@ -67,62 +67,56 @@
             "type": "click",
             "target": "main",
             "label": "Click here to login",
+            "allowNavigation": true,
             "selectors": [
                 [
                      "#root button"
                 ]
             ]  
         },
+        
         {
             "type": "input",
             "target": "main",
-            "label": "Enter Verification code that you have received on your registered mobile number",
+            "label": "Select Proof Of Identity (POI) document type",
             "selectors": [
                 [
-                    "#root div:nth-of-type(3) input"
+                     "section:nth-of-type(1) select"
                 ]
             ]  
         },
         {
             "type": "click",
             "target": "main",
-            "label": "Fill this form to proceed",
+            "label": "Click on accept button",
             "selectors": [
                 [
-                    "div.form_text-field section:nth-of-type(1)"
+                     "div.MuiModal-root button"
                 ]
             ]  
         },
+       
         {
-            "type": "input",
-            "target": "main",
-            "label": "Select Proof Of Identity (POI) document type",
-            "selectors": [
-                [
-                    "section:nth-of-type(1) select"
-                ]
-            ]  
-        },
-        {
-            "type": "input",
-            "target": "main",
-            "label": "Select Proof Of Identity (POI) document type",
-            "selectors": [
-                [
-                    "section:nth-of-type(1) select"
-                ]
-            ]  
-        },
-        {
-            "type": "input",
+            "type": "click",
             "target": "main",
             "label": "Click here to upload document",
             "selectors": [
                 [
-                    "div.form_text-field section:nth-of-type(1)"
+                     "section:nth-of-type(1) div.sc-krNlru > div"
                 ]
             ]  
         },
+        {
+            "type": "input",
+            "target": "main",
+            "label": "Continue to upload document",
+            "selectors": [
+                [
+                     "body > div:nth-of-type(4) div:nth-of-type(1) > button"
+                ]
+            ]  
+        },
+       
         {
             "type": "input",
             "target": "main",
@@ -130,6 +124,16 @@
             "selectors": [
                 [
                      "section:nth-of-type(2) select"
+                ]
+            ]  
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click on accept button",
+            "selectors": [
+                [
+                     "div.MuiModal-root button"
                 ]
             ]  
         },
@@ -143,6 +147,7 @@
                 ]
             ]  
         },
+        
         {
             "type": "click",
             "target": "main",

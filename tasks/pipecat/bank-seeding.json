@@ -1,36 +1,38 @@
+
 {
-    "title": "Login | Login to Aadhaar Portal | Aadhaar Login | How to Login | How to Login here",
+    "title": "how to check bank seeding status | check bank seeding status | check bank linking status | check bank linking status in aadhar | check bank seeding status in aadhar",
     "selectorAttribute": "data-testid",
     "steps": [
-        
+       
         {
             "type": "click",
             "target": "main",
-            "label": "Click on login button to proceed",
+            "label": "Click here to check bank seeding status",
             "allowNavigation": true,
+            "selectors": [
+                [
+                    "div[role='button'][aria-label='Bank seeding status']"
+                ]
+            ]  
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "label": "Login first if you not logged in , First Enter your Aadhaar number",
             "selectors": [   
                [
-                    ".login-section__card"
+                     "div.form-section__text-field input"
                 ]    
             ]
-        },      
-         {
-            "type": "input",
-            "target": "main",
-            "label": "Enter your Aadhaar number",
-            "selectors": [  
-                [
-                     "div.form-section__text-field input"
-                ]       
-           ]       
         },
+        
         {
             "type": "input",
             "target": "main",
             "label": "Enter Captcha",
             "selectors": [
                 [
-                    "div.form-section__captcha-field-container input"
+                    "div.pvc-form__captcha-field-container input"
                 ]               
             ]  
         },
@@ -50,7 +52,7 @@
             "label": "Enter the OTP received on your registered mobile number",
             "selectors": [
                 [
-                     "#root div:nth-of-type(3) input"
+                    "#root div:nth-of-type(3) input"
                 ]       
             ]
         },
@@ -59,11 +61,25 @@
             "type": "click",
             "target": "main",
             "label": "Click here to login",
+            "allowNavigation": true,
             "selectors": [
                 [
                     "#root button"
                 ]     
             ]
-        } 
+        } ,
+        {
+            "type": "click",
+            "target": "main",
+            "label": "Click here to check bank seeding status",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                     "div:nth-of-type(5) div.service-card__info-section"
+                ]
+            ]  
+        }
+        
+       
     ]
 }

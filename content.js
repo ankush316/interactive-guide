@@ -557,15 +557,21 @@
   const reportDeathOfFamilyMember = await loadTask("tasks/pipecat/report-death-of-a-family-member.json");
   const generateVID = await loadTask("tasks/pipecat/generate-vid.json");
   const updateDocument = await loadTask("tasks/pipecat/update-document.json");
-  const checkBankSeedingStatus = await loadTask("tasks/pipecat/check-bank-seeding-status.json");
+  const checkBankSeedingStatus = await loadTask("tasks/pipecat/bank-seeding.json");
   const lockUnlockAadhar = await loadTask("tasks/pipecat/lock-unlock-aadhar.json");
   const checkEnrolmentStatus = await loadTask("tasks/pipecat/check-enrolment-status.json");
-  const checkpvcStatus = await loadTask("tasks/pipecat/check-pvc-status.json");
+  const checkPvcStatus = await loadTask("tasks/pipecat/check-pvc-card-status.json");
+  const checkDeceasedAadharDeactivationStatus = await loadTask("tasks/pipecat/check-deceased-aadhar-deactivation-status.json");
+  const locateEnrolmentNumber = await loadTask("tasks/pipecat/locate-enrolment-number.json");
+  const checkValidity = await loadTask("tasks/pipecat/check-aadhar-validity.json");
+  const checkGrievance = await loadTask("tasks/pipecat/check-grievance.json");
+  const reportGrievance = await loadTask("tasks/pipecat/grievance.json");
+  const bookAppointment = await loadTask("tasks/pipecat/book-appointment.json");
 
   const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
   const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
 
-  const aadharTasks = [login, changeLanguage, downloadAadhar, retrieveAadharNumber, verifyEmailOrMobile, reportDeathOfFamilyMember, generateVID, updateDocument, checkBankSeedingStatus, lockUnlockAadhar, checkEnrolmentStatus, checkpvcStatus].filter(Boolean);
+  const aadharTasks = [login, changeLanguage, downloadAadhar, retrieveAadharNumber, verifyEmailOrMobile, reportDeathOfFamilyMember, generateVID, updateDocument, checkBankSeedingStatus, lockUnlockAadhar, checkEnrolmentStatus, checkPvcStatus, checkDeceasedAadharDeactivationStatus, locateEnrolmentNumber, checkValidity, checkGrievance, reportGrievance, bookAppointment].filter(Boolean);
   const pipedriveTasks = [addContact, addOrg].filter(Boolean);
 
   let currentTasks = [];

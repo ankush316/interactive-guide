@@ -6,11 +6,12 @@
         {
             "type": "click",
             "target": "main",
+            "allowNavigation": true,
             "label": "Click here to go to contacts page",
             "selectors": [
                 
                 [
-                    "nav li:nth-of-type(3) > a"
+                    "nav li:nth-of-type(10) > a"
                 ]
             ]
             
@@ -18,6 +19,7 @@
         {
             "type": "click",
             "target": "main",
+            "allowNavigation": true,
             "label": "Click here to add a new contact",
             "selectors": [
                 

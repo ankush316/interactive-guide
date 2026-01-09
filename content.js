@@ -462,6 +462,8 @@
       activeListenerCleanup();
       activeListenerCleanup = null;
     }
+    await new Promise(resolve => setTimeout(resolve, 2000));
+
   
     if (currentStepIndex >= steps.length) {
     
@@ -474,7 +476,8 @@
     }
   
     const step = steps[currentStepIndex];
-
+    
+    
     let el = null;
     for (let i = 0; i < 20; i++) { // increased retries
       el = findElement(step.selectors);

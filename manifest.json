@@ -12,14 +12,16 @@
 
   "host_permissions": [
     "*://*.uidai.gov.in/*",
-    "*://*.pipedrive.com/*"
+    "*://*.pipedrive.com/*",
+    "*://*.nrsc.gov.in/*"
   ],
 
   "content_scripts": [
     {
       "matches": [
         "*://*.uidai.gov.in/*",
-        "*://*.pipedrive.com/*"
+        "*://*.pipedrive.com/*",
+        "*://*.nrsc.gov.in/*"
       ],
       "js": ["content.js"],
       "css": ["content.css"],
@@ -29,7 +31,7 @@
 
   "web_accessible_resources": [
     {
-      "resources": ["tasks/pipecat/*.json"],
+      "resources": ["tasks/pipedrive/*.json", "tasks/aadhar/*.json"],
       "matches": ["<all_urls>"]
     }
   ],

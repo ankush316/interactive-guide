@@ -1,0 +1,54 @@
+{
+    "title": "Add Organisation|Add Organization|Add Company",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to contacts page",
+            "selectors": [
+                
+                [
+                    "a[aria-label='Contacts']"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to add a new organisation",
+            "selectors": [
+                
+                [
+                    "#main-content li:nth-of-type(2) > a"
+                ]
+            ]
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to add a new organisation",
+            "selectors": [
+                
+                [
+                    "[data-test='add-entity']"
+                ]
+            ]
+        },
+        {
+            "type": "click",
+            "label": "Fill this form to complete the task",
+            "selectors": [
+                [
+                    "[data-test='left-panel']"
+                ]
+            ],
+            "target": "main"
+        }
+    ]
+}

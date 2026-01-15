@@ -1,0 +1,65 @@
+{
+    "title": "Import Deals Data into PipeDrive",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to deals page",
+            "selectors": [
+                
+                [
+                     "a[aria-label='Deals']"
+                ]
+            ]
+            
+        },
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on this icon and Select import deals to this pipecat option",
+            "selectors": [
+                
+                [
+                    "div.cui5-toolbar__view-actions button.cui5-button-group-item--last-child"
+                ]
+            ]
+        },
+         {
+            "type": "click",
+            "label": "Click here to proceed next",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "[data-test='next-navigation']"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click here to select file and upload",
+            "selectors": [
+                [
+                     "div.cui5-spacing--top-l span"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click on next to proceed",
+            "selectors": [
+                [
+                      "div.cui5-spacing--left-s span"
+                ]
+            ],
+            "target": "main"
+        }
+      
+    ]
+}

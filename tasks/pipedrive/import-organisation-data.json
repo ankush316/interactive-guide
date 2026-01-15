@@ -1,0 +1,76 @@
+{
+    "title": "Import Organisation Data into PipeDrive",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to contacts page",
+            "selectors": [
+                
+                [
+                     "a[aria-label='Contacts']"
+                ]
+            ]
+            
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on organisations",
+            "selectors": [    
+                [
+                    "#main-content li:nth-of-type(2) > a"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on this icon to add more data and click on import data",
+            "selectors": [
+                
+                [
+                    "div.cui5-toolbar__view-actions button.cui5-icon-button"
+                ]
+            ]
+        },
+         {
+            "type": "click",
+            "label": "Click here to proceed next",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "[data-test='next-navigation']"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click here to select file and upload",
+            "selectors": [
+                [
+                     "div.cui5-spacing--top-l span"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click on next to proceed",
+            "selectors": [
+                [
+                      "div.cui5-spacing--left-s span"
+                ]
+            ],
+            "target": "main"
+        }
+      
+    ]
+}

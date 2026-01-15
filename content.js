@@ -552,30 +552,38 @@
 
 
   // Load tasks
-  const login = await loadTask("tasks/pipecat/login-aadhar.json");
-  const changeLanguage = await loadTask("tasks/pipecat/change-language.json");
-  const downloadAadhar = await loadTask("tasks/pipecat/download-aadhar.json")  
-  const retrieveAadharNumber = await loadTask("tasks/pipecat/retrieve-aadhar-number.json");
-  const verifyEmailOrMobile = await loadTask("tasks/pipecat/verify-email-or-mobile.json");
-  const reportDeathOfFamilyMember = await loadTask("tasks/pipecat/report-death-of-a-family-member.json");
-  const generateVID = await loadTask("tasks/pipecat/generate-vid.json");
-  const updateDocument = await loadTask("tasks/pipecat/update-document.json");
-  const checkBankSeedingStatus = await loadTask("tasks/pipecat/bank-seeding.json");
-  const lockUnlockAadhar = await loadTask("tasks/pipecat/lock-unlock-aadhar.json");
-  const checkEnrolmentStatus = await loadTask("tasks/pipecat/check-enrolment-status.json");
-  const checkPvcStatus = await loadTask("tasks/pipecat/check-pvc-card-status.json");
-  const checkDeceasedAadharDeactivationStatus = await loadTask("tasks/pipecat/check-deceased-aadhar-deactivation-status.json");
-  const locateEnrolmentNumber = await loadTask("tasks/pipecat/locate-enrolment-number.json");
-  const checkValidity = await loadTask("tasks/pipecat/check-aadhar-validity.json");
-  const checkGrievance = await loadTask("tasks/pipecat/check-grievance.json");
-  const reportGrievance = await loadTask("tasks/pipecat/grievance.json");
-  const bookAppointment = await loadTask("tasks/pipecat/book-appointment.json");
+  const login = await loadTask("tasks/aadhar/login-aadhar.json");
+  const changeLanguage = await loadTask("tasks/aadhar/change-language.json");
+  const downloadAadhar = await loadTask("tasks/aadhar/download-aadhar.json")  
+  const retrieveAadharNumber = await loadTask("tasks/aadhar/retrieve-aadhar-number.json");
+  const verifyEmailOrMobile = await loadTask("tasks/aadhar/verify-email-or-mobile.json");
+  const reportDeathOfFamilyMember = await loadTask("tasks/aadhar/report-death-of-a-family-member.json");
+  const generateVID = await loadTask("tasks/aadhar/generate-vid.json");
+  const updateDocument = await loadTask("tasks/aadhar/update-document.json");
+  const checkBankSeedingStatus = await loadTask("tasks/aadhar/bank-seeding.json");
+  const lockUnlockAadhar = await loadTask("tasks/aadhar/lock-unlock-aadhar.json");
+  const checkEnrolmentStatus = await loadTask("tasks/aadhar/check-enrolment-status.json");
+  const checkPvcStatus = await loadTask("tasks/aadhar/check-pvc-card-status.json");
+  const checkDeceasedAadharDeactivationStatus = await loadTask("tasks/aadhar/check-deceased-aadhar-deactivation-status.json");
+  const locateEnrolmentNumber = await loadTask("tasks/aadhar/locate-enrolment-number.json");
+  const checkValidity = await loadTask("tasks/aadhar/check-aadhar-validity.json");
+  const checkGrievance = await loadTask("tasks/aadhar/check-grievance.json");
+  const reportGrievance = await loadTask("tasks/aadhar/report-grievance.json");
+  const bookAppointment = await loadTask("tasks/aadhar/book-appointment.json");
 
-  const addContact = await loadTask("tasks/pipecat/add-contact-pipedrive.json");
-  const addOrg = await loadTask("tasks/pipecat/add-organisation-pipedrive.json");
+  const addContact = await loadTask("tasks/pipedrive/add-contact-pipedrive.json");
+  const addOrg = await loadTask("tasks/pipedrive/add-organisation-pipedrive.json");
+  const importData = await loadTask("tasks/pipedrive/import-data.json");
+  const exportData = await loadTask("tasks/pipedrive/export-data.json");
+  const importPeopleData = await loadTask("tasks/pipedrive/import-people-data.json");
+  const importOrganisationData = await loadTask("tasks/pipedrive/import-organisation-data.json");
+  const addLead = await loadTask("tasks/pipedrive/add-lead.json");
+  const addDeal = await loadTask("tasks/pipedrive/add-deal.json");
+  const importLeads = await loadTask("tasks/pipedrive/import-leads.json");
+  const importDeals = await loadTask("tasks/pipedrive/import-deals.json");
 
   const aadharTasks = [login, changeLanguage, downloadAadhar, retrieveAadharNumber, verifyEmailOrMobile, reportDeathOfFamilyMember, generateVID, updateDocument, checkBankSeedingStatus, lockUnlockAadhar, checkEnrolmentStatus, checkPvcStatus, checkDeceasedAadharDeactivationStatus, locateEnrolmentNumber, checkValidity, checkGrievance, reportGrievance, bookAppointment].filter(Boolean);
-  const pipedriveTasks = [addContact, addOrg].filter(Boolean);
+  const pipedriveTasks = [addContact, addOrg, importData, exportData, importPeopleData, importOrganisationData, addLead, addDeal, importLeads, importDeals].filter(Boolean);
 
   let currentTasks = [];
 

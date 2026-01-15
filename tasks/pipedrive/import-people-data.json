@@ -1,0 +1,78 @@
+{
+    "title": "Import People Data into PipeDrive",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to contacts page",
+            "selectors": [
+                
+                [
+                     "a[aria-label='Contacts']"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on peoples",
+            "selectors": [
+                
+                [
+                    "#main-content li:nth-of-type(1) > a"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on this icon and select import data option",
+            "selectors": [
+                
+                [
+                    "div.cui5-toolbar__view-actions button.cui5-icon-button"
+                ]
+            ]
+        },
+        
+         {
+            "type": "click",
+            "label": "Click here to proceed next",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "[data-test='next-navigation']"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click here to select file and upload",
+            "selectors": [
+                [
+                    "div._1e6c4a27 div.cui5-spacing--top-m > div > div:nth-of-type(3) span"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click on next to proceed",
+            "selectors": [
+                [
+                      "div.cui5-spacing--left-s span"
+                ]
+            ],
+            "target": "main"
+        }
+      
+    ]
+}

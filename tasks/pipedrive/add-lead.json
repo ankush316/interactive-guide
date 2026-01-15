@@ -1,0 +1,43 @@
+{
+    "title": "Add Lead",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to leads page",
+            "selectors": [
+                
+                [
+                   "a[aria-label='Leads']"
+                ]
+            ]
+            
+        },
+         
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to add a new lead",
+            "selectors": [
+                
+                [
+                    "button.cui5-button-group-item--first-child"
+                ]
+            ]
+        },
+        {
+            "type": "click",
+            "label": "Fill this form to add new lead",
+            "selectors": [
+                [
+                    "[data-test='compound-modal'] header"
+                ]
+            ],
+            "target": "main"
+        }
+    ]
+}

@@ -1,5 +1,5 @@
 {
-    "title": "Add Contact|Add Person|Add User",
+    "title": "Add Deal",
     "selectorAttribute": "data-testid",
     "steps": [
         
@@ -7,33 +7,34 @@
             "type": "click",
             "target": "main",
             "allowNavigation": true,
-            "label": "Click here to go to contacts page",
+            "label": "Click here to go to deals page",
             "selectors": [
                 
                 [
-                    "nav li:nth-of-type(10) > a"
+                   "a[aria-label='Deals']"
                 ]
             ]
             
         },
+         
         {
             "type": "click",
             "target": "main",
             "allowNavigation": true,
-            "label": "Click here to add a new contact",
+            "label": "Click here to add a new deal",
             "selectors": [
                 
                 [
-                    "[data-test='add-entity']"
+                    "div.cui5-toolbar__view-actions button.cui5-button-group-item--first-child"
                 ]
             ]
         },
         {
             "type": "click",
-            "label": "Fill this form to complete the task",
+            "label": "Fill this form to add new deal",
             "selectors": [
                 [
-                    "[data-test='left-panel']"
+                     "[data-test='compound-modal'] header"
                 ]
             ],
             "target": "main"

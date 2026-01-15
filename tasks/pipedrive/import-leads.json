@@ -1,0 +1,77 @@
+{
+    "title": "Import Leads Data into PipeDrive",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to leads page",
+            "selectors": [
+                
+                [
+                     "a[aria-label='Leads']"
+                ]
+            ]
+            
+        },
+         {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on Leads Inbox",
+            "selectors": [
+                
+                [
+                    "#main-content li:nth-of-type(1) > a"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click on this icon and select import data",
+            "selectors": [
+                
+                [
+                    "button.cui5-button-group-item--last-child"
+                ]
+            ]
+        },
+         {
+            "type": "click",
+            "label": "Click here to proceed next",
+            "allowNavigation": true,
+            "selectors": [
+                [
+                    "[data-test='next-navigation']"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click here to select file and upload",
+            "selectors": [
+                [
+                    "div.cui5-spacing--top-l span"
+                ]
+            ],
+            "target": "main"
+        },
+        {
+            "type": "click",
+            "label": "Click on next to proceed",
+            "selectors": [
+                [
+                    "div.cui5-spacing--left-s span"
+                ]
+            ],
+            "target": "main"
+        }
+      
+    ]
+}

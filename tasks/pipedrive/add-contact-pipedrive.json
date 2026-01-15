@@ -1,5 +1,5 @@
 {
-    "title": "Add Organisation|Add Organization|Add Company",
+    "title": "Add Contact|Add Person|Add User",
     "selectorAttribute": "data-testid",
     "steps": [
         
@@ -11,7 +11,7 @@
             "selectors": [
                 
                 [
-                    "nav li:nth-of-type(10) > a"
+                   "a[aria-label='Contacts']"
                 ]
             ]
             
@@ -20,19 +20,20 @@
             "type": "click",
             "target": "main",
             "allowNavigation": true,
-            "label": "Click here to add a new organisation",
+            "label": "Click here to add a new contact",
             "selectors": [
                 
                 [
-                    "#main-content li:nth-of-type(2) > a"
+                     "#main-content li:nth-of-type(1) > a"
                 ]
             ]
         },
+         
         {
             "type": "click",
             "target": "main",
             "allowNavigation": true,
-            "label": "Click here to add a new organisation",
+            "label": "Click here to add a new contact",
             "selectors": [
                 
                 [

@@ -1,0 +1,53 @@
+{
+    "title": "Export Data into PipeDrive",
+    "selectorAttribute": "data-testid",
+    "steps": [
+        
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Click here to go to contacts page",
+            "selectors": [
+                
+                [
+                     "a[aria-label='Contacts']"
+                ]
+            ]
+            
+        },
+        {
+            "type": "click",
+            "target": "main",
+            "allowNavigation": true,
+            "label": "Merge duplicates[role=\"link\"]",
+            "selectors": [
+                
+                [
+                    "#main-content li:nth-of-type(4) > a"
+                ]
+            ]
+        },
+        {
+            "type": "click",
+            "label": "Click on Export data",
+            "selectors": [
+                [
+                     "#main-content li:nth-of-type(9) > a"
+                ]
+            ],
+            "target": "main"
+        },
+         {
+            "type": "click",
+            "label": "Click on Export button",
+            "selectors": [
+                [
+                       "[data-testid='export-action-button'] > span"
+                ]
+            ],
+            "target": "main"
+        }
+         
+    ]
+}
